@@ -13,14 +13,16 @@
   <!-- Bootstrap Icon -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
   <!-- Sign Up Form Template CSS -->
-  <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="https://wahine.s3.amazonaws.com/static/css/style1.css">
+  <!-- <link rel="stylesheet" href="https://wahine.s3.amazonaws.com/static/css/style1.css"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+    integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-{% block extrahead %}
-{% endblock %}
+  {% block extrahead %}
+  {% endblock %}
 </head>
 
 <header>
@@ -75,7 +77,8 @@
         </ul>
       </div>
       {% if request.user.is_authenticated %}
-<a class="btn Btn-Primary px-2 mx-1" role="button" href="{% url 'bank_account_form' %}">Dashboard</a> <a class="btn Btn-Primary px-2 mx-1" role="button" href="{% url 'logout' %}">Log out</a>
+      <a class="btn Btn-Primary px-2 mx-1" role="button" href="{% url 'bank_account_form' %}">Dashboard</a> <a
+        class="btn Btn-Primary px-2 mx-1" role="button" href="{% url 'logout' %}">Log out</a>
       {% else %}
       <a class="btn Btn-Primary" href="{% url 'login' %}" role="button" style="margin:0">Log In</a>
       {% endif %}
@@ -110,70 +113,95 @@
   {% block content %}
 
   {% endblock %}
- 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+    integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-      {% if messages %}
-      {% for message in messages %}
- <script>
-toastr.options = {
-  "closeButton": false,
-  "debug": false,
-  "newestOnTop": false,
-  "progressBar": false,
-  "positionClass": "toast-bottom-right",
-  "preventDuplicates": false,
-  "onclick": null,
-  "showDuration": "300",
-  "hideDuration": "1000",
-  "timeOut": "5000",
-  "extendedTimeOut": "1000",
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
-}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+    integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  {% if messages %}
+  {% for message in messages %}
+  <script>
+    toastr.options = {
+      "closeButton": false,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": false,
+      "positionClass": "toast-bottom-right",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    }
 
-    toastr.{{ message.tags }}('{{message}}');
-    
+    toastr.{ { message.tags } } ('{{message}}');
+
   </script>
   {% endfor %}
   {% endif %}
-      <script src=
-"https://code.jquery.com/jquery-1.12.4.min.js">
-    </script>
-     <script type="text/javascript">
-            $(document).ready(function() {
-                $('.hide_answer').click(function() {
-                    var inputValue = $(this).attr("value");
-                    if (inputValue = 'hide'){
-                       $('.answer').hide(200);
-                    }
-                    else
-                    {
-                       $('.answer').show(200);
-                    }
-  
-                });
-                $('.unhide_answer').click(function() {
-                    var inputValue = $(this).attr("value");
-                    if (inputValue = 'unhide'){
-                       $('.answer').show(200);
-                    }
-                    else
-                    {
-                       $('.answer').hide(200);
-                    }
-  
-                });
-            });
-        </script>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js">
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('.hide_answer').click(function () {
+        var inputValue = $(this).attr("value");
+        if (inputValue = 'hide') {
+          $('.answer').hide(200);
+        }
+        else {
+          $('.answer').show(200);
+        }
+
+      });
+      $('.unhide_answer').click(function () {
+        var inputValue = $(this).attr("value");
+        if (inputValue = 'unhide') {
+          $('.answer').show(200);
+        }
+        else {
+          $('.answer').hide(200);
+        }
+
+      });
+    });
+  </script>
 </body>
 
+<footer>
+  <!-- Footer -->
+  <div class="container-fluid  
+pt-5 pb-5 bg-light" style="padding:0px 50px;">
+    <div class="row">
+      <div class="col-lg-4 offset-lg-1">
+        <h5>Contact</h5>
+        <p><span style="font-size: 85%;"><span style="font-weight: 400;">Suite B9-07, Plaza Mont Kiara,
+              <br /></span><span style="font-weight: 400;">2 </span><span style="font-weight: 400;">Jalan Kiara, Mont
+              Kiara, <br />50480 Kuala Lumpur, <br />Wilayah Persekutuan Kuala Lumpur</span></span></p>
+        <p><span style="font-size: 85%;">Phone Number: 0122181517</span><br /><span style="font-size: 85%;">Email:
+            hello@wcapital.asia</span></p>
+      </div>
+      <div class="col-lg-7">
+        <h5>Disclaimer</h5>
+        <p><span style="font-weight: 400; font-size: 85%;">Wahine Capital Sdn Bhd (hereafter “Wahine Capital”) is not in
+            any capacity associated with Wahine Capital Limited, which is a company incorporated in the British Virgin
+            Islands. The naming of the company is purely coincidental and Wahine Capital has no working relationship or
+            any other connection with Wahine Capital Limited.</span></p>
+      </div>
+    </div>
+  </div>
+
+</footer>
 
 
 
