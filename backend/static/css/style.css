@@ -43,6 +43,7 @@ h3,
 .banner h3 {
     font-size: 2.369rem !important;
     margin: 0;
+    font-family: 'Playfair Display', serif;
 }
 
 h2,
@@ -451,6 +452,17 @@ a {
 }
 
 
+
+/* Who we are page */
+.Banner-WhoWeAre {
+    background: linear-gradient(rgba(191, 192, 205, 0.8), hsla(0, 0%, 0%, 0.155)), url(http://wahine.wcapital.asia/wp-content/uploads/2022/12/Banner_WhoWeAre2.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+
+}
+
+
 /* Desktop Only */
 @media screen and (min-width: 768px) {
     .margin-RightN200 {
@@ -496,6 +508,7 @@ a {
     h3,
     .banner h3 {
         font-size: 1.728rem !important;
+        font-family: 'Playfair Display', serif;
     }
 
     h2,

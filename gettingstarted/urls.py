@@ -17,6 +17,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
 	path("",index,name="index"),
+	path("who-we-are/",who_we_are,name="who_we_are"),
 	path("joinnow/",joinnow,name="joinnow"),
 	path("profile/",profile,name="profile"),
 	path("signup/",signup,name="signup"),

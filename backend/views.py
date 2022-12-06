@@ -17,6 +17,9 @@ def logout_view(request):
 def index(request):
     return render(request,'backend/index.html')
 
+def who_we_are(request):
+    return render(request,'backend/who-we-are.html')    
+
 def joinnow(request):
     return render(request,'backend/joinnow.html')
 
