@@ -269,10 +269,20 @@ a {
 }
 
 
+.Bg-Primary {
+    background-color: #55BCB9;
+}
+
 .BG-Blue {
     background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(217, 253, 255, 1) 100%);
 
 }
+
+.Bg-LightBlue {
+    background-color: #D9FDFF;
+}
+
+
 
 .BG-Gray {
     background-color: #EEF2FB;
@@ -363,7 +373,7 @@ a {
 .Section8 {
     color: black;
     padding-top: 80px;
-    padding-bottom: 180px;
+    padding-bottom: 80px;
 }
 
 .Testimonial {
@@ -380,6 +390,20 @@ a {
     color: white;
 
 }
+
+/* Women Network Background */
+.Bg-WomenNetwork {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(http://wahine.wcapital.asia/wp-content/uploads/2022/12/Img_WomenNetwork.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-blend-mode: overlay;
+
+
+
+}
+
+
 
 
 /* Join Now Page */
@@ -406,7 +430,7 @@ a {
 }
 
 /* Pricing Table */
-.card1:hover {
+/* .card1:hover {
     background: #00ffb6;
     border: 1px solid #00ffb6;
 }
@@ -438,7 +462,7 @@ a {
 .card:hover .btn-outline-dark {
     color: white;
     background: #212529;
-}
+} */
 
 
 
@@ -461,6 +485,13 @@ a {
     height: 80vh;
 
 }
+
+.Icon-WomenNetwork {
+    margin-top: -15px;
+    max-width: fit-content;
+}
+
+
 
 
 /* Desktop Only */
