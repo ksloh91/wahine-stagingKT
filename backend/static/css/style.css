@@ -14,6 +14,7 @@ p,
     font-family: 'Merriweather', serif;
     font-weight: lighter;
     line-height: 32px;
+    text-align: left !important;
 
 }
 
@@ -331,11 +332,6 @@ a {
 
 
 
-
-
-
-
-
 /* Section 6 Founders Profile Title*/
 .Section6 {
     background-color: #1D3557;
@@ -490,6 +486,28 @@ a {
     margin-top: -15px;
     max-width: fit-content;
 }
+
+/* Contact Us */
+.HeroBannerContact {
+    background: url('http://wahine.wcapital.asia/wp-content/uploads/2022/12/Img_Banner_Contact.jpg');
+    min-height: 80vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+
+/* Dashboard Page */
+.nav-pills .nav-link {
+    border-radius: 10rem;
+    border: 2px solid #8f1346;
+    color: #8f1346;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #8f1346;
+}
+
 
 
 

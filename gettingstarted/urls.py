@@ -19,6 +19,7 @@ urlpatterns = [
 	path("",index,name="index"),
 	path("who-we-are/",who_we_are,name="who_we_are"),
 	path("joinnow/",joinnow,name="joinnow"),
+	path("contact-us/",contact_us,name="contact-us"),
 	path("profile/",profile,name="profile"),
 	path("signup/",signup,name="signup"),
 	path("login/",login_view,name="login"),

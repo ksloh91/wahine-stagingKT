@@ -23,6 +23,9 @@ def who_we_are(request):
 def joinnow(request):
     return render(request,'backend/joinnow.html')
 
+def contact_us(request):
+    return render(request,'backend/contact-us.html')
+
 def signup(request):
     if request.POST:
         form = SignUpForm(request.POST)
