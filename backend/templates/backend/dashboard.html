@@ -49,7 +49,7 @@
 									<section class="pt-5">
 										<div class="container p-0">
 											<div class="row">
-												<div class="col-lg-8 mb-4 mx-auto">
+												<div class="col-lg-6 col-12 mb-4 mx-auto">
 
 													<!-- Asset Chart -->
 													<canvas class="" id="AssetChart"></canvas>
@@ -432,7 +432,7 @@
 		labels: ['Bank', 'EPF/SOCSO', 'Insurance', 'Investment', 'Property', 'Vehicles', 'Others'],
 		datasets: [{
 			label: 'Asset Value',
-			data: [120, 100, 200, 1, 850, 150, 50],
+			data: [120, 100, 200, 0, 850, 150, 50],
 			backgroundColor: [
 				'#e63a54',
 				'#d8f4ff',
@@ -492,7 +492,7 @@
 					//text
 					const textWidth = ctx.measureText(chart.data.labels[index]).width;
 					console.log(textWidth)
-					ctx.font = '12px Arial';
+					ctx.font = '14px Arial';
 
 					//control position
 					const textXPosition = x >= halfwidth ? 'left' : 'right';
@@ -527,7 +527,7 @@
 			plugins: {
 				legend: {
 					display: true,
-					position: 'right'
+					position: 'bottom'
 				},
 			}
 		},
