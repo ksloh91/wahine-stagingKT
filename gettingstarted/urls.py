@@ -25,6 +25,7 @@ urlpatterns = [
 	path("login/",login_view,name="login"),
 	path("plan/",selectplan,name="plan"),
 	path("dashboard/",dashboard,name="dashboard"),
+	path("dashboard-assets/",dashboard_assets,name="dashboard-assets"),
 	path("logout/",logout_view,name="logout"),
 	## Onboarding Assets 
 	path("assets/overview",assets_overview,name="assets_overview"),

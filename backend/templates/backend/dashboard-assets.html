@@ -1,0 +1,90 @@
+{% extends "backend/base.html" %}
+{% load static %}
+
+{% block extrahead %}
+<!-- STYLE CSS -->
+<link rel="stylesheet" href="https://wahine.s3.amazonaws.com/static/css/style-SignUp.css">
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+<!-- Steps CSS and JS -->
+<link rel="stylesheet" href="https://wahine.s3.amazonaws.com/static/css/steps.css">
+{% endblock %}
+{% block content %}
+
+<div class="chartCard">
+	<div class="chartBox">
+		<canvas id="AssetChart"></canvas>
+	</div>
+</div>
+<!-- ChartJS Libray -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- ChartJS DataLabel -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js"
+	integrity="sha512-Tfw6etYMUhL4RTki37niav99C6OHwMDB2iBT5S5piyHO+ltK2YX8Hjy9TXxhE1Gm/TmAV0uaykSpnHKFIAif/A=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- Asset Chart Setting -->
+<script>
+	// setup 
+	const data = {
+		labels: ['Bank', 'EPF/SOCSO', 'Insurance', 'Investment', 'Property', 'Vehicles', 'Others'],
+		datasets: [{
+			label: 'Asset Value',
+			data: [250, 100, 100, 200, 300, 200, 100],
+			backgroundColor: [
+				'#e63a54',
+				'#d8f4ff',
+				"#110f48",
+				"#f8f8fa",
+				"#55BCB9",
+				"#8f1346",
+				"#ffba00"
+			],
+			borderColor: [
+				'#e63a54',
+				'#d8f4ff',
+				"#110f48",
+				"#f8f8fa",
+				"#55BCB9",
+				"#8f1346",
+				"#ffba00"
+			],
+			borderWidth: 1
+		}]
+	};
+
+	// config 
+	const config = {
+		type: 'doughnut',
+		data,
+		options: {
+			scales: {
+			},
+			plugins: {
+				datalabels: {
+					textAlign: 'center',
+					formatter: (value, context) => {
+						// console.log(value);
+						// console.log(context.chart.data,datasets[0].data);
+						const datapoints = context.chart.data.datasets[0].data;
+						function totalSum(total, datapoint) {
+							return total + datapoint;
+						}
+						const totalValue = datapoints.reduce(totalSum, 0);
+						const percentageValue = (value / totalValue * 100).toFixed(1);
+						const display = [`${value}`, `${percentageValue}%`]
+						return display;
+					}
+				}
+			}
+		},
+		plugins: [ChartDataLabels]
+	};
+
+	// render init block
+	const myChart = new Chart(
+		document.getElementById('AssetChart'),
+		config
+	);
+</script>
+
+
+{% endblock %}

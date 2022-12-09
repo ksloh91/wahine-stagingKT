@@ -84,6 +84,9 @@ def selectplan(request):
 def dashboard(request):
     return render(request,'backend/dashboard.html')
 
+def dashboard_assets(request):
+    return render(request,'backend/dashboard-assets.html')
+
 def profile(request):
     return render(request,'backend/profile.html')
 

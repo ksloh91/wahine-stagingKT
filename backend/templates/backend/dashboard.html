@@ -48,7 +48,7 @@
 								<div class="tab-pane fade" id="pills-contact" role="tabpanel"
 									aria-labelledby="pills-contact-tab">Liabilities Content</div>
 							</div>
-							<!-- Pie Chart -->
+							<!-- Doughnut Chart -->
 							<section class="pt-5">
 								<div class="container p-0">
 									<div class="row">
@@ -429,121 +429,75 @@
 	</form>
 </div>
 
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- ChartJS Libray -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- ChartJS DataLabel -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js"
+	integrity="sha512-Tfw6etYMUhL4RTki37niav99C6OHwMDB2iBT5S5piyHO+ltK2YX8Hjy9TXxhE1Gm/TmAV0uaykSpnHKFIAif/A=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- Asset Chart Setting -->
 <script>
-	var ctx1 = document.getElementById("AssetChart");
-	var AssetChart = new Chart(ctx1, {
+	// setup 
+	const data = {
+		labels: ['Bank', 'EPF/SOCSO', 'Insurance', 'Investment', 'Property', 'Vehicles', 'Others'],
+		datasets: [{
+			label: 'Asset Value',
+			data: [120, 100, 2100, 1, 850, 150, 50],
+			backgroundColor: [
+				'#e63a54',
+				'#d8f4ff',
+				"#110f48",
+				"#f8f8fa",
+				"#55BCB9",
+				"#8f1346",
+				"#ffba00"
+			],
+			borderColor: [
+				'#e63a54',
+				'#d8f4ff',
+				"#110f48",
+				"#f8f8fa",
+				"#55BCB9",
+				"#8f1346",
+				"#ffba00"
+			],
+			borderWidth: 1
+		}]
+	};
+
+	// config 
+	const config = {
 		type: 'doughnut',
+		data,
 		options: {
-			cutoutPercentage: 75,
-			legend: {
-				position: 'left',
-				labels: {
-					boxWidth: 10,
-					fontStyle: 'italic',
-					fontColor: '#aaa',
-					usePointStyle: true,
-				}
+			scales: {
 			},
-
-		},
-		data: {
-			labels: [
-				"Bank",
-				"EPF/Socso",
-				"Insurance",
-				"Investment",
-				"Property",
-				"Vehicles",
-				"Others"
-			],
-			datasets: [
-				{
-					data: [250, 100, 100, 200, 300, 200, 100],
-					borderWidth: 0,
-					backgroundColor: [
-						'#e63a54',
-						'#d8f4ff',
-						"#110f48",
-						"#f8f8fa",
-						"#55BCB9",
-						"#8f1346",
-						"#ffba00"
-
-					],
-					hoverBackgroundColor: [
-						'#e63a54',
-						'#d8f4ff',
-						"#110f48",
-						"#f8f8fa",
-						"#55BCB9",
-						"#8f1346",
-						"#ffba00"
-
-					]
-				}]
-		}
-	});
-
-</script>
-<!-- Asset Pie Chart -->
-<script>
-	var ctx1 = document.getElementById("AssetChart");
-	var AssetChart = new Chart(ctx1, {
-		type: 'line',
-		options: {
-			cutoutPercentage: 75,
-			legend: {
-				position: 'bottom',
-				labels: {
-					boxWidth: 10,
-					fontStyle: 'italic',
-					fontColor: '#aaa',
-					usePointStyle: true,
+			plugins: {
+				datalabels: {
+					textAlign: 'center',
+					formatter: (value, context) => {
+						// console.log(value);
+						// console.log(context.chart.data,datasets[0].data);
+						const datapoints = context.chart.data.datasets[0].data;
+						function totalSum(total, datapoint) {
+							return total + datapoint;
+						}
+						const totalValue = datapoints.reduce(totalSum, 0);
+						const percentageValue = (value / totalValue * 100).toFixed(1);
+						const display = [`${value}`, `${percentageValue}%`]
+						return display;
+					}
 				}
-			},
-
+			}
 		},
-		data: {
-			labels: [
-				"Bank",
-				"EPF/Socso",
-				"Insurance",
-				"Investment",
-				"Property",
-				"Vehicles",
-				"Others"
-			],
-			datasets: [
-				{
-					data: [50, 100, 100, 200, 300, 200, 100],
-					borderWidth: 0,
-					backgroundColor: [
-						'#e63a54',
-						'#d8f4ff',
-						"#110f48",
-						"#f8f8fa",
-						"#55BCB9",
-						"#8f1346",
-						"#ffba00"
+		plugins: [ChartDataLabels]
+	};
 
-					],
-					hoverBackgroundColor: [
-						'#e63a54',
-						'#d8f4ff',
-						"#110f48",
-						"#f8f8fa",
-						"#55BCB9",
-						"#8f1346",
-						"#ffba00"
-
-					]
-				}]
-		}
-	});
-
+	// render init block
+	const myChart = new Chart(
+		document.getElementById('AssetChart'),
+		config
+	);
 </script>
 
-</body>
 {% endblock %}
