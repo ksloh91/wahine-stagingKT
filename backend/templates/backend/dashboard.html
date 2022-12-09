@@ -52,16 +52,10 @@
 							<section class="pt-5">
 								<div class="container p-0">
 									<div class="row">
-										<div class="col-lg-12 mb-4">
-											<div class="card-body p-4">
-												<div class="row align-items-center">
-													<div class="col-lg-8 mx-auto">
-														<!-- Asset Chart -->
-														<canvas class="col-lg-6 col-12 mx-auto"
-															id="AssetChart"></canvas>
-													</div>
-												</div>
-											</div>
+										<div class="col-lg-8 mb-4 mx-auto">
+
+											<!-- Asset Chart -->
+											<canvas class="" id="AssetChart"></canvas>
 
 										</div>
 									</div>
@@ -412,12 +406,6 @@
 
 
 
-							<!-- Button -->
-							<div class="mt-5 text-end">
-								<a class="btn Btn-Primary mt-5" href="/edits-assets-epf" role="button">Save</a>
-
-							</div>
-
 						</div>
 
 					</div>
@@ -442,12 +430,12 @@
 		labels: ['Bank', 'EPF/SOCSO', 'Insurance', 'Investment', 'Property', 'Vehicles', 'Others'],
 		datasets: [{
 			label: 'Asset Value',
-			data: [120, 100, 2100, 1, 850, 150, 50],
+			data: [120, 100, 200, 1, 850, 150, 50],
 			backgroundColor: [
 				'#e63a54',
 				'#d8f4ff',
 				"#110f48",
-				"#f8f8fa",
+				"gray",
 				"#55BCB9",
 				"#8f1346",
 				"#ffba00"
@@ -456,23 +444,81 @@
 				'#e63a54',
 				'#d8f4ff',
 				"#110f48",
-				"#f8f8fa",
+				"gray",
 				"#55BCB9",
 				"#8f1346",
 				"#ffba00"
 			],
-			borderWidth: 1
+			borderWidth: 1,
+			cutout: '90%',
+			borderRadius: 10,
+			offset: 0,
 		}]
 	};
+
+	// doughnutLabelsLine plugin
+	const doughnutLabelsLine = {
+		id: 'doughnutLabelsLine',
+		afterDraw(chart, args, options) {
+			const { ctx, chartArea: { top, bottom, left, right, width, height } } = chart;
+
+			chart.data.datasets.forEach((dataset, i) => {
+
+				chart.getDatasetMeta(i).data.forEach((datapoint, index) => {
+					// console.log(chart.data.labels)
+					const { x, y } = datapoint.tooltipPosition();
+					// ctx.fillStyle = dataset.borderColor[index];
+					// ctx.fill();
+					// // ctx.fillRect(x, y, 2, 2);
+					// console.log(x)
+
+					//draw line
+					const halfwidth = width / 2;
+					const halfheight = height / 2;
+
+					const xLine = x >= halfwidth ? x + 15 : x - 15;
+					const yLine = y >= halfheight ? y + 15 : y - 15;
+					const extraLine = x >= halfwidth ? 15 : -15;
+					//line	
+					ctx.beginPath();
+					ctx.moveTo(x, y);
+					ctx.lineTo(xLine, yLine);
+					ctx.lineTo(xLine + extraLine, yLine);
+					ctx.strokeStyle = dataset.borderColor[index];
+					ctx.stroke();
+
+					//text
+					const textWidth = ctx.measureText(chart.data.labels[index]).width;
+					console.log(textWidth)
+					ctx.font = '12px Arial';
+
+					//control position
+					const textXPosition = x >= halfwidth ? 'left' : 'right';
+					const plusFifteenPx = x >= halfwidth ? 15 : -15;
+					ctx.textAlign = textXPosition;
+					ctx.textBaseline = 'middle';
+					ctx.fillStyle = dataset.borderColor[index];
+					ctx.fillText(chart.data.labels[index], xLine + extraLine + plusFifteenPx, yLine);
+
+				})
+			})
+		}
+	}
 
 	// config 
 	const config = {
 		type: 'doughnut',
 		data,
 		options: {
-			scales: {
+			layout: {
+				padding: 20
 			},
+			maintainAspectRatio: false,
 			plugins: {
+				legend: {
+					display: true
+				},
+
 				datalabels: {
 					textAlign: 'center',
 					formatter: (value, context) => {
@@ -490,11 +536,12 @@
 				}
 			}
 		},
-		plugins: [ChartDataLabels]
+		plugins: [ChartDataLabels],
+		plugins: [doughnutLabelsLine]
 	};
 
 	// render init block
-	const myChart = new Chart(
+	const AssetChart = new Chart(
 		document.getElementById('AssetChart'),
 		config
 	);
