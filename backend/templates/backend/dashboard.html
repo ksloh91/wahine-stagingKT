@@ -103,7 +103,7 @@
 														<small>Account Value: MYR 120,000</small>
 													</div><br>
 													<div class="mt-3">
-														<a class="btn Btn-Secondary-2" href="#" role="button">Save</a>
+														<a class="btn Btn-Secondary-2" href="#" role="button">Edit</a>
 													</div>
 												</div>
 											</div>
@@ -153,7 +153,7 @@
 														<small>Account Value: MYR 50,000</small>
 													</div>
 													<div class="mt-3">
-														<a class="btn Btn-Secondary-2" href="#" role="button">Save</a>
+														<a class="btn Btn-Secondary-2" href="#" role="button">Edit</a>
 													</div>
 												</div>
 											</div>
@@ -212,7 +212,7 @@
 														<small>Sum Insured: 100,000</small>
 													</div>
 													<div class="mt-3">
-														<a class="btn Btn-Secondary-2" href="#" role="button">Save</a>
+														<a class="btn Btn-Secondary-2" href="#" role="button">Edit</a>
 													</div>
 												</div>
 											</div>
@@ -255,14 +255,14 @@
 													<br>
 													<!-- Private Investment #2 -->
 													<div>
-														<small class="Color-Secondary">#1</small><br>
+														<small class="Color-Secondary">#2</small><br>
 														<small>Public Investment</small><br>
 														<small>Investment Type: Unit Trust </small><br>
 
 													</div>
 
 													<div class="mt-3">
-														<a class="btn Btn-Secondary-2" href="#" role="button">Save</a>
+														<a class="btn Btn-Secondary-2" href="#" role="button">Edit</a>
 													</div>
 												</div>
 											</div>
@@ -304,7 +304,7 @@
 													</div>
 
 													<div class="mt-3">
-														<a class="btn Btn-Secondary-2" href="#" role="button">Save</a>
+														<a class="btn Btn-Secondary-2" href="#" role="button">Edit</a>
 													</div>
 												</div>
 											</div>
@@ -347,7 +347,7 @@
 													</div>
 
 													<div class="mt-3">
-														<a class="btn Btn-Secondary-2" href="#" role="button">Save</a>
+														<a class="btn Btn-Secondary-2" href="#" role="button">Edit</a>
 													</div>
 												</div>
 											</div>
@@ -388,7 +388,7 @@
 													</div>
 
 													<div class="mt-3">
-														<a class="btn Btn-Secondary-2" href="#" role="button">Save</a>
+														<a class="btn Btn-Secondary-2" href="#" role="button">Edit</a>
 													</div>
 												</div>
 											</div>
@@ -494,16 +494,24 @@
 
 					//control position
 					const textXPosition = x >= halfwidth ? 'left' : 'right';
-					const plusFifteenPx = x >= halfwidth ? 15 : -15;
+					const plusFifteenPx = x >= halfwidth ? 5 : -5;
 					ctx.textAlign = textXPosition;
 					ctx.textBaseline = 'middle';
 					ctx.fillStyle = dataset.borderColor[index];
-					ctx.fillText(chart.data.labels[index], xLine + extraLine + plusFifteenPx, yLine);
+
+					// Sum of datasets
+					datasum = chart.data.datasets[0].data.reduce((partialSum, a) => partialSum + a, 0)
+
+					//Convert
+					data_percentage = (chart.data.datasets[0].data[index] / datasum * 100).toFixed(2) + '%'
+					ctx.fillText(data_percentage, xLine + extraLine + plusFifteenPx, yLine);
 
 				})
 			})
 		}
 	}
+
+
 
 	// config 
 	const config = {
@@ -516,28 +524,14 @@
 			maintainAspectRatio: false,
 			plugins: {
 				legend: {
-					display: true
+					display: true,
+					position: 'right'
 				},
-
-				datalabels: {
-					textAlign: 'center',
-					formatter: (value, context) => {
-						// console.log(value);
-						// console.log(context.chart.data,datasets[0].data);
-						const datapoints = context.chart.data.datasets[0].data;
-						function totalSum(total, datapoint) {
-							return total + datapoint;
-						}
-						const totalValue = datapoints.reduce(totalSum, 0);
-						const percentageValue = (value / totalValue * 100).toFixed(1);
-						const display = [`${value}`, `${percentageValue}%`]
-						return display;
-					}
-				}
 			}
 		},
-		plugins: [ChartDataLabels],
-		plugins: [doughnutLabelsLine]
+
+		plugins: [doughnutLabelsLine],
+
 	};
 
 	// render init block
