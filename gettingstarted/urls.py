@@ -18,8 +18,11 @@ from django.conf.urls.static import static
 urlpatterns = [
 	path("",index,name="index"),
 	path("who-we-are/",who_we_are,name="who_we_are"),
-	path("joinnow/",joinnow,name="joinnow"),
+	path("wvault/",wvault,name="wvault"),
 	path("contact-us/",contact_us,name="contact-us"),
+	path("terms-of-service/",terms_of_service,name="terms-of-service"),
+	path("privacy-policy/",privacy_policy,name="privacy-policy"),
+	path("return-refund-policy/",return_refund_policy,name="return-refund-policy"),
 	path("profile/",profile,name="profile"),
 	path("signup/",signup,name="signup"),
 	path("login/",login_view,name="login"),

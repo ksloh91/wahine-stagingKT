@@ -20,11 +20,21 @@ def index(request):
 def who_we_are(request):
     return render(request,'backend/who-we-are.html')    
 
-def joinnow(request):
-    return render(request,'backend/joinnow.html')
+def wvault(request):
+    return render(request,'backend/wvault.html')
 
 def contact_us(request):
     return render(request,'backend/contact-us.html')
+
+def terms_of_service(request):
+    return render(request,'backend/terms-of-service.html')
+
+def return_refund_policy(request):
+    return render(request,'backend/return-refund-policy.html')
+
+def privacy_policy(request):
+    return render(request,'backend/privacy-policy.html')
+
 
 def signup(request):
     if request.POST:

@@ -151,7 +151,6 @@ p a:hover {
 
 }
 
-
 a {
     display: block;
     padding: 20px;
@@ -163,10 +162,9 @@ a {
     font-size: 16px;
 }
 
-/* a:hover {
-    background-color: gray;
-    color: white;
-} */
+.navbar-light .navbar-nav a {
+    font-family: 'Playfair Display', serif;
+}
 
 
 /* Header Logo */
@@ -390,7 +388,7 @@ a {
 
 /* Women Network Background */
 .Bg-WomenNetwork {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(http://wahine.wcapital.asia/wp-content/uploads/2022/12/Img_WomenNetwork.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url(http://wahine.wcapital.asia/wp-content/uploads/2022/12/Img_WomenNetwork.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -502,6 +500,17 @@ a {
     background-repeat: no-repeat;
 
 }
+
+
+/* Terms Of Service */
+.HeroBannerTOS {
+    background: url('https://wahine.wcapital.asia/wp-content/uploads/2022/10/Img_Banner3.png');
+    min-height: 70vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
 
 
 /* Dashboard Page */
@@ -627,10 +636,14 @@ a {
         margin-left: 100px;
     }
 
-    .HeroBannerContact {
-        min-height: 40vh;
+    .HeroBannerContact,
+    .HeroBannerTOS {
+        min-height: 30vh;
 
     }
+
+
+
 
     .chartBox {
         width: 90%;
